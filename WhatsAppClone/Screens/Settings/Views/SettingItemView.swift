@@ -8,12 +8,39 @@
 import SwiftUI
 
 struct SettingItemView: View {
-    private var se
+     var settingItem:SettingsModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        HStack {
+              imageView()
+                .frame(width: 30,height: 30)
+                .foregroundStyle(.white)
+                .background(settingItem.bgColor)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+            
+            Text(settingItem.title)
+                .font(.system(size: 19))
+                .bold()
+            Spacer()
+        }
+        
     }
+    
+    @ViewBuilder
+    private func imageView()->some View{
+        switch settingItem.imageType {
+        case .systemImage:
+            Image(systemName: settingItem.image )
+                .bold()
+                .font(.callout)
+        case .assetImage:
+            Image(settingItem.image )
+                .renderingMode(.template) .padding(3)
+        }
+        
+     }
 }
 
 #Preview {
-    SettingItemView()
+    SettingItemView(settingItem: .account)
 }

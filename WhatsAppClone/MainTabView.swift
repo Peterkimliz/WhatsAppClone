@@ -23,18 +23,18 @@ struct MainTabView: View {
                         Text(TabItem.calls.description)
                     }
                     
-                Text("Communuities")
+                CommunityTabScreen()
                     .tabItem{
                         Image(systemName: TabItem.communities.icon)
                         Text(TabItem.communities.description)
                     }
-                Text("Chats")
+                ChatsTabScreen()
                     .tabItem{
                         Image(systemName: TabItem.chats.icon)
                         Text(TabItem.chats.description)
                         
                     }
-                Text("Settings")
+                SettingsTabScreen()
                     .tabItem{
                         Image(systemName: TabItem.settings.icon)
                         Text(TabItem.settings.description)
