@@ -1,6 +1,6 @@
 # 💬 WhatsApp Clone
 
-A full-featured WhatsApp clone built with Flutter, replicating the core messaging experience with a clean, familiar UI.
+A full-featured WhatsApp clone built with Swift for iOS, replicating the core messaging experience with a clean, native UI.
 
 ---
 
@@ -10,8 +10,8 @@ A full-featured WhatsApp clone built with Flutter, replicating the core messagin
 - 📞 Calls tab (voice & video)
 - 👥 Contacts & chat list
 - 🟢 Online/offline status
-- 🔔 Notifications support
-- 🌙 Clean, native-feeling UI
+- 🔔 Push notifications
+- 🎨 Native iOS look and feel
 
 ---
 
@@ -34,28 +34,26 @@ A full-featured WhatsApp clone built with Flutter, replicating the core messagin
 
 ## 🛠️ Built With
 
-- [Flutter](https://flutter.dev/) — UI framework
-- [Dart](https://dart.dev/) — Programming language
+- [Swift](https://swift.org/) — Programming language
+- [SwiftUI](https://developer.apple.com/xcode/swiftui/) / UIKit — UI framework *(update as needed)*
 - [Firebase](https://firebase.google.com/) — Backend & real-time database *(update if different)*
 
 ---
 
 ## 🚀 Getting Started
 
+1. Clone the repo
 ```bash
 git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-flutter pub get
-flutter run
 ```
+2. Open `YourApp.xcodeproj` or `YourApp.xcworkspace` in Xcode
+3. Configure your Firebase/backend credentials
+4. Build & run on simulator or device
 
-> Make sure you have Flutter installed. See [flutter.dev/docs/get-started](https://flutter.dev/docs/get-started).
+> Requires Xcode 15+ and iOS 16+. *(update as needed)*
 
 ---
 
 ## 📄 License
 
 MIT License © 2025
-
-
-
