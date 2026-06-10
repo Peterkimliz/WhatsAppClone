@@ -7,12 +7,26 @@
 
 import SwiftUI
 
-struct CommonModifiers: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+
+struct BubbleTailModifier: ViewModifier{
+    var direction:MessageDirection
+    
+    func body(content:Content)->some View{
+        content.overlay(alignment: direction == .received ? .bottomLeading : .bottomTrailing) {
+            TextBubbleTail(directin: direction)
+        }
     }
+    
 }
 
-#Preview {
-    CommonModifiers()
+
+extension View{
+    
+    func applyTrailing(direction:MessageDirection)->some View{
+        modifier(BubbleTailModifier(direction: direction))
+        
+    }
+    
+    
 }

@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct TextBubbleTail: View {
+    var directin:MessageDirection
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        var background : Color {
+            switch directin {
+            case .sent:
+                .bubbleGreen
+            case .received:
+                .bubbleWhite
+            }
+        }
+        
+        Image(directin == .received ? .incomingTail : .outgoingTail)
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 10,height: 10)
+            .foregroundStyle(background)
+           
+        
     }
 }
 
 #Preview {
-    TextBubbleTail()
+    ScrollView{
+        TextBubbleTail(directin: .sent)
+        TextBubbleTail(directin: .received)
+    }
+    .frame(maxWidth: .infinity)
+    .background(.gray)
 }

@@ -6,6 +6,17 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		18BBE4132FD81E8600F74611 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 18BBE4122FD81E8600F74611 /* FirebaseAnalytics */; };
+		18BBE4152FD81E8600F74611 /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 18BBE4142FD81E8600F74611 /* FirebaseAnalyticsCore */; };
+		18BBE4172FD81E8600F74611 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 18BBE4162FD81E8600F74611 /* FirebaseAuth */; };
+		18BBE4192FD81E8600F74611 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 18BBE4182FD81E8600F74611 /* FirebaseCore */; };
+		18BBE41B2FD81E8600F74611 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 18BBE41A2FD81E8600F74611 /* FirebaseCrashlytics */; };
+		18BBE41D2FD81E8600F74611 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 18BBE41C2FD81E8600F74611 /* FirebaseDatabase */; };
+		18BBE41F2FD81E8600F74611 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 18BBE41E2FD81E8600F74611 /* FirebaseFirestore */; };
+		18BBE4212FD81E8600F74611 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 18BBE4202FD81E8600F74611 /* FirebaseStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		18A066342FD2CE490047F25E /* WhatsAppClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsAppClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +34,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BBE41D2FD81E8600F74611 /* FirebaseDatabase in Frameworks */,
+				18BBE4132FD81E8600F74611 /* FirebaseAnalytics in Frameworks */,
+				18BBE4172FD81E8600F74611 /* FirebaseAuth in Frameworks */,
+				18BBE41B2FD81E8600F74611 /* FirebaseCrashlytics in Frameworks */,
+				18BBE4192FD81E8600F74611 /* FirebaseCore in Frameworks */,
+				18BBE4212FD81E8600F74611 /* FirebaseStorage in Frameworks */,
+				18BBE4152FD81E8600F74611 /* FirebaseAnalyticsCore in Frameworks */,
+				18BBE41F2FD81E8600F74611 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +84,14 @@
 			);
 			name = WhatsAppClone;
 			packageProductDependencies = (
+				18BBE4122FD81E8600F74611 /* FirebaseAnalytics */,
+				18BBE4142FD81E8600F74611 /* FirebaseAnalyticsCore */,
+				18BBE4162FD81E8600F74611 /* FirebaseAuth */,
+				18BBE4182FD81E8600F74611 /* FirebaseCore */,
+				18BBE41A2FD81E8600F74611 /* FirebaseCrashlytics */,
+				18BBE41C2FD81E8600F74611 /* FirebaseDatabase */,
+				18BBE41E2FD81E8600F74611 /* FirebaseFirestore */,
+				18BBE4202FD81E8600F74611 /* FirebaseStorage */,
 			);
 			productName = WhatsAppClone;
 			productReference = 18A066342FD2CE490047F25E /* WhatsAppClone.app */;
@@ -94,6 +121,9 @@
 			);
 			mainGroup = 18A0662B2FD2CE490047F25E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 18A066352FD2CE490047F25E /* Products */;
 			projectDirPath = "";
@@ -261,6 +291,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -293,6 +324,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,6 +364,60 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.14.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		18BBE4122FD81E8600F74611 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		18BBE4142FD81E8600F74611 /* FirebaseAnalyticsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsCore;
+		};
+		18BBE4162FD81E8600F74611 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		18BBE4182FD81E8600F74611 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		18BBE41A2FD81E8600F74611 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		18BBE41C2FD81E8600F74611 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		18BBE41E2FD81E8600F74611 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		18BBE4202FD81E8600F74611 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18BBE4112FD81E8600F74611 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 18A0662C2FD2CE490047F25E /* Project object */;
 }

@@ -10,9 +10,17 @@ import SwiftUI
 struct ChatRoom: View {
     var body: some View {
         ZStack {
-            
             Image(.chatbackground)
                 .resizable()
+            
+            ScrollView{
+                TextBubbleView(message: .sentPlaceHolder)
+                TextBubbleView(message: .receivesPlaceHolder)
+                TextBubbleView(message: .sentPlaceHolder)
+                TextBubbleView(message: .receivesPlaceHolder)
+                TextBubbleView(message: .sentPlaceHolder)
+                TextBubbleView(message: .receivesPlaceHolder)
+            }
             
         }
         .toolbarVisibility(.hidden, for:.tabBar)
