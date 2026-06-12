@@ -24,7 +24,7 @@ struct TextBubbleTail: View {
         Image(directin == .received ? .incomingTail : .outgoingTail)
             .resizable()
             .renderingMode(.template)
-            .frame(width: 10,height: 10)
+            .frame(width: 12,height: 12)
             .foregroundStyle(background)
            
         

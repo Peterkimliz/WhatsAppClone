@@ -7,12 +7,23 @@
 
 import SwiftUI
 
-struct UserItem: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct UserItem:Identifiable, Hashable,Codable{
+    
+    let uid:String
+    let username:String
+    let email:String
+    var bio:String? = nil
+    var profileImageUrl:String? = nil
+    
+    
+    var id:String{
+      return uid
     }
-}
-
-#Preview {
-    UserItem()
+    
+    var bioUrwrapped:String{
+        return bio ?? "Hi there!  Iam using Whatsapp"
+    }
+    
+    
+    
 }

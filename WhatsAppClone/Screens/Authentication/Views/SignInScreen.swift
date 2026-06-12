@@ -8,8 +8,62 @@
 import SwiftUI
 
 struct SignInScreen: View {
+    @State private var authVm:AuthViewModel = AuthViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        @Bindable var authBindable = authVm
+        
+        NavigationStack{
+            VStack(spacing: 15){
+                
+                  TextFormField(
+                    value: $authBindable.txtLoginEmail,
+                    image: "envelope.fill",
+                    placeholder: "Email",
+                    keyBoardType: .emailAddress,
+                    inputState: authBindable.emailLoginValid)
+                  .padding(.top,10)
+                  .padding(.bottom,10)
+                
+                  TextFormField(
+                    value: $authBindable.txtLoginPassword,
+                    image: "lock.fill",
+                    placeholder: "Password",
+                    isSecure: true,
+                    inputState: authBindable.passwordLoginValid)
+                
+                
+                NavigationLink {
+                    ForgotPasswordScreen()
+                } label: {
+                    NavLink(title: "Forgot", subTitle: "Password?")
+                }
+
+                
+                Button {
+                    
+                } label: {
+                    Text("Sign In")
+                        .buttonTextModifier(bgColor:authBindable.isLoginValid ? .black : .gray.opacity(0.3))
+                       
+                }.disabled(authBindable.isLoginValid ? false : true)
+                
+                
+               Spacer()
+                
+                
+                
+                NavigationLink {
+                    SignUpScreen()
+                } label: {
+                    NavLink(title: "Dont have Account?", subTitle: "Sign Up",alignment: .center)
+                }
+                
+                
+            }.padding(.horizontal,10)
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+            .navigationTitle("Sign In")
+        
+        }.environment(authVm)
     }
 }
 

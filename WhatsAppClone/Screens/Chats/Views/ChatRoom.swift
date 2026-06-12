@@ -14,12 +14,21 @@ struct ChatRoom: View {
                 .resizable()
             
             ScrollView{
-                TextBubbleView(message: .sentPlaceHolder)
-                TextBubbleView(message: .receivesPlaceHolder)
-                TextBubbleView(message: .sentPlaceHolder)
-                TextBubbleView(message: .receivesPlaceHolder)
-                TextBubbleView(message: .sentPlaceHolder)
-                TextBubbleView(message: .receivesPlaceHolder)
+                ForEach(MessageItem.messageItems) { item in
+                    
+                    if(item.type == .text){
+                        TextBubbleView(message: item)
+                    }
+                    else if(item.type == .audio){
+                       AudioBubbleView(message: item)
+                    }
+                    
+                    else{
+                        ImageBubbleView(message: item)
+                    }
+                    
+                }
+                
             }
             
         }

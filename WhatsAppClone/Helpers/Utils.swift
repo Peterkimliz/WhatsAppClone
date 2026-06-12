@@ -7,12 +7,11 @@
 
 import SwiftUI
 
-struct Utils: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
 
-#Preview {
-    Utils()
+
+enum TextInputFieldsState{
+    case invalid
+    case valid
+    case empty
+
 }

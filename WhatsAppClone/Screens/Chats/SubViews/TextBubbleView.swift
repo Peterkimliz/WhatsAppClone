@@ -14,10 +14,12 @@ struct TextBubbleView: View {
             Text(message.message)
              dateView()
             }.padding(5)
+        
         .background(message.bgMessage)
         .clipShape(RoundedRectangle(cornerRadius: 10,style: .continuous))
         .padding(.horizontal,2)
         .padding(.vertical,2)
+        .offset(y:2)
         .applyTrailing(direction: message.direction)
         .frame(maxWidth: .infinity,alignment: message.alignment)
         .shadow(color:Color(.systemGray6).opacity(0.3),radius: 2,x: 0,y: 1)

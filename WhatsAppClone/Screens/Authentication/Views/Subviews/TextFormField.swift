@@ -44,7 +44,7 @@ struct TextFormField: View {
             }
             .keyboardType(keyBoardType)
             .autocorrectionDisabled()
-            .textInputAutocapitalization(.none)
+            .textInputAutocapitalization(.never)
             .font(.system(size: 20))
         
         }.padding(.vertical,15)

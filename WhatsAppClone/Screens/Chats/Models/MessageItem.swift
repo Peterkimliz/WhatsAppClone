@@ -10,6 +10,7 @@ import SwiftUI
 struct MessageItem: Identifiable{
     let id:UUID = UUID()
     let message:String
+    let type:MessageType
     let direction:MessageDirection
     
     var alignment:Alignment{
@@ -39,11 +40,55 @@ struct MessageItem: Identifiable{
         }
     }
     
-    static var sentPlaceHolder = MessageItem(message: "Hello John how are you doing this morning , hope you are still aware that we have a swift meetup this very afternoon", direction: .sent)
-    static var receivesPlaceHolder = MessageItem(message: "Hello to Peter, yes iam still aware about the meeting", direction: .received)
+    static var sentPlaceHolder = MessageItem(
+        message: "Hello John how are you doing this morning , hope you are still aware that we have a swift meetup this very afternoon",
+        type:.text,
+        direction: .sent
+    )
+    
+    static var receivesPlaceHolder = MessageItem(
+        message: "Hello to Peter, yes iam still aware about the meeting",
+        type: .text,
+        direction: .received
+    )
+    
+    static var messageItems:[MessageItem]=[
+        sentPlaceHolder,
+        receivesPlaceHolder,
+        
+        MessageItem(
+            message: "Check this image",
+            type: .photo,
+            direction: .sent
+        ),
+        
+        MessageItem(
+            message: "Check this video",
+            type: .video,
+            direction: .received
+        ),
+        MessageItem(
+            message: "Play Audio",
+            type: .audio,
+            direction: .received
+        ) ,
+        MessageItem(
+            message: "Play Audio",
+            type: .audio,
+            direction: .sent
+        )
+        
+    ]
+    
+    
+    
+    
+    
     
 }
-
+enum MessageType{
+    case text, photo, video,audio
+}
 
 enum MessageDirection{
     case sent
