@@ -65,7 +65,13 @@ struct SignUpScreen: View {
                 .frame(maxWidth: .infinity,maxHeight: .infinity)
                 .navigationTitle("Sign Up")
                 .showLoading(isLoading: authBindable.isRegisterestering, message: "Creating Account...")
-                 
+                .alert("SignUp Error ", isPresented: $authBindable.autherror.showError,){
+                    Button(role:.close) {
+                        
+                    }
+                }message: {
+                    Text(authBindable.autherror.message)
+                }
                 .navigationBarBackButtonHidden()
             
             }

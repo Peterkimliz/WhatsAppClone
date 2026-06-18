@@ -1,10 +1,6 @@
-//
 //  CallsTabScreen.swift
 //  WhatsAppClone
-//
 //  Created by Apple on 07/06/2026.
-//
-
 import SwiftUI
 
 struct CallsTabScreen: View {

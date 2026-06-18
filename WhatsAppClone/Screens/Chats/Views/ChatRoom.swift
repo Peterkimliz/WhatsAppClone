@@ -3,10 +3,8 @@
 //  WhatsAppClone
 //
 //  Created by Apple on 07/06/2026.
-//
 
 import SwiftUI
-
 struct ChatRoom: View {
     var body: some View {
         ZStack {
@@ -91,10 +89,6 @@ extension ChatRoom{
     }
     
 }
-
-
-
-
 
 
 #Preview {

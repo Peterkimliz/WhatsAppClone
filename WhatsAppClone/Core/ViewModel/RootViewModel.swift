@@ -6,13 +6,25 @@
 //
 
 import SwiftUI
+import Combine
+@Observable
+final class RootViewModel{
+    
+    var cancelable:AnyCancellable?
+    
+     init(){
+        
+      cancelable = AuthenticationService.shared.authState.receive(on: DispatchQueue.main)
+            .sink {[weak self]latestState in
+                self?.authState = latestState
+        }
 
-struct RootViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
     }
-}
-
-#Preview {
-    RootViewModel()
+    var authState:AuthStatus = AuthStatus.loading
+    
+    
+    
+    
+    
 }

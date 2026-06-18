@@ -40,7 +40,9 @@ struct SignInScreen: View {
 
                 
                 Button {
-                    
+                    Task{
+                       await authBindable.handleLogin()
+                    }
                 } label: {
                     Text("Sign In")
                         .buttonTextModifier(bgColor:authBindable.isLoginValid ? .black : .gray.opacity(0.3))
@@ -59,9 +61,19 @@ struct SignInScreen: View {
                 }
                 
                 
-            }.padding(.horizontal,10)
+            }
+           
+            .padding(.horizontal,10)
             .frame(maxWidth: .infinity,maxHeight: .infinity)
             .navigationTitle("Sign In")
+            .showLoading(isLoading: authBindable.isSigningIn, message: "Signing in")
+            .alert("Login Error ", isPresented: $authBindable.autherror.showError,){
+                Button(role:.close) {
+                    
+                }
+            }message: {
+                Text(authBindable.autherror.message)
+            }
         
         }.environment(authVm)
     }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainTabView: View {
+    let user:UserModel
+    
     var body: some View {
     
             TabView{
@@ -48,7 +50,6 @@ struct MainTabView: View {
 
 extension MainTabView{
     
-    
     private enum TabItem: String{
         case updates
         case calls
@@ -88,5 +89,5 @@ extension MainTabView{
 
 
 #Preview {
-    MainTabView()
+    MainTabView(user: UserModel(uid: "twrq6seyrwye", email: "test@gmail.com", username: "test"))
 }

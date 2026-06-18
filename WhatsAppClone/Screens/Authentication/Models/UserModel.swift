@@ -7,12 +7,33 @@
 
 import SwiftUI
 
-struct UserModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct UserModel:Identifiable ,Decodable,Hashable{
+    
+    let uid:String
+    let email:String
+    let username:String
+    var bio:String? = nil
+    var profileImageUrl:String?
+    
+    var id:String{
+        return uid
     }
+    
+    var bioUnwraapped:String{
+        return bio ?? "Hi! Iam using Whatsappp"
+    }
+    
 }
 
-#Preview {
-    UserModel()
+
+extension UserModel {
+    
+    init(dictionary:[String:Any]) {
+        self.uid = dictionary["uid"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
+        self.username = dictionary["username"] as? String ?? ""
+        self.bio = dictionary["bio"] as? String ?? ""
+        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+    }
+    
 }

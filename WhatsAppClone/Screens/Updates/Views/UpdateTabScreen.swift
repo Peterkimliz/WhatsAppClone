@@ -1,9 +1,6 @@
-//
 //  UpdateTabScreen.swift
 //  WhatsAppClone
-//
 //  Created by Apple on 06/06/2026.
-//
 
 import SwiftUI
 
@@ -33,7 +30,7 @@ struct UpdateTabScreen: View {
                 } header: {
                     HStack {
                         Text("Channels")
-                            .foregroundStyle(.black)
+                        
                             .bold()
                         Spacer()
                         UpdateStatusFadeButton(image: "plus")
@@ -62,6 +59,7 @@ private struct StatusSectionHeader :View {
             
             VStack(alignment: .leading){
                     Text("Use Status to share photos,text and videos that disappear in 24 hours.")
+                
                     Text("Status Privacy")
                         .foregroundStyle(.blue)
                         .bold()
@@ -72,7 +70,7 @@ private struct StatusSectionHeader :View {
                 .foregroundStyle(.gray)
             
         }.padding(10)
-        .background(.white)
+        .background(.whatsAppWhite)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         
     }

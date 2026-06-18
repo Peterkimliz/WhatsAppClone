@@ -22,6 +22,11 @@ class AuthViewModel{
     var isLoginValid:Bool = false
     var isRegisterValid:Bool = false
     var isRegisterestering:Bool = false
+    var isSigningIn:Bool = false
+    
+    var autherror:(message:String, showError:Bool) = ("", false)
+    
+    
     
     
     var txtLoginEmail : String = "" {
@@ -73,6 +78,24 @@ class AuthViewModel{
     
     
     
+    func handleLogin()async{
+        isSigningIn = true
+        defer{
+            isSigningIn = false
+        }
+        
+        do{
+            try await  AuthenticationService.shared.loginUser(with: txtLoginEmail, and: txtRegisterPassword)
+            print("Iam logging in")
+            
+        }catch{
+            autherror.showError = true
+            autherror.message = error.localizedDescription
+            print("Error Occurred \(error.localizedDescription)")
+        }
+        
+    }
+    
     func handleSignUp() async {
         isRegisterestering = true
         
@@ -81,10 +104,12 @@ class AuthViewModel{
         }
         
         do{
-            let _ = try await AuthService.shared.signUp(name: txtRegisterName, email: txtRegisterEmail, password: txtRegisterPassword)
-            print("The result is")
+            try await AuthenticationService.shared.createUser(for: txtRegisterName, with: txtRegisterEmail, and: txtRegisterPassword)
+           print("The result is")
             
-        }catch{
+        } catch{
+            autherror.showError = true
+            autherror.message = error.localizedDescription
             print("Error Occurred \(error.localizedDescription)")
         }
     }

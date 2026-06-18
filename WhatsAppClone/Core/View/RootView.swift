@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct RootView: View {
+    @State private var rootVm:RootViewModel=RootViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        switch rootVm.authState {
+        case .loading:
+            ProgressView()
+                .controlSize(.large)
+        case .loggedIn(let userModel):
+            MainTabView(user: userModel)
+        case .loggedOut:
+            SignInScreen()
+        }
+        
+      
     }
 }
 
-#Preview {
-    RootView()
-}
