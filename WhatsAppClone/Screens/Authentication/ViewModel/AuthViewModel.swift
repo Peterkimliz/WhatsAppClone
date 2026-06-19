@@ -85,8 +85,10 @@ class AuthViewModel{
         }
         
         do{
-            try await  AuthenticationService.shared.loginUser(with: txtLoginEmail, and: txtRegisterPassword)
+            try await  AuthenticationService.shared.loginUser(with: txtLoginEmail, and: txtLoginPassword)
             print("Iam logging in")
+            txtLoginEmail = ""
+            txtLoginPassword = ""
             
         }catch{
             autherror.showError = true
@@ -106,12 +108,19 @@ class AuthViewModel{
         do{
             try await AuthenticationService.shared.createUser(for: txtRegisterName, with: txtRegisterEmail, and: txtRegisterPassword)
            print("The result is")
+            txtRegisterName = ""
+            txtRegisterPassword = ""
+            txtRegisterEmail = ""
             
         } catch{
             autherror.showError = true
             autherror.message = error.localizedDescription
             print("Error Occurred \(error.localizedDescription)")
         }
+    }
+    
+    func handleLogout()async{
+        await AuthenticationService.shared.logout()
     }
     
     

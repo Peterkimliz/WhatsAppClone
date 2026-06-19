@@ -79,6 +79,11 @@ extension SettingsModel{
         image: "heart.fill",
         bgColor: .red)
     
+    static let logout = SettingsModel(
+        title: "Log Out",
+        image: "rectangle.portrait.and.arrow.right.fill",
+        bgColor: .red)
+    
     
     
 }

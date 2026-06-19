@@ -6,15 +6,11 @@
 //
 
 import SwiftUI
-import Combine
 import FirebaseAuth
 import FirebaseDatabase
+import Combine
 
-enum AuthStatus{
-    case loading
-    case loggedIn(UserModel)
-    case loggedOut
-}
+
 
 enum AuthError:LocalizedError{
     case failedToCreateUser(message:String)
@@ -35,26 +31,20 @@ enum AuthError:LocalizedError{
 
 protocol AuthenticationProvider{
     static var shared:AuthenticationProvider{ get }
-    var authState:CurrentValueSubject<AuthStatus,Never>{get}
-    
+  
     func createUser(for username:String, with email:String ,and password:String ) async throws
     func loginUser(with email:String ,and password:String ) async throws
     func logout( ) async
-    func autoLogin()async
+ 
     
     
 }
 
 final class AuthenticationService: AuthenticationProvider{
     
-    private init(){
-        Task{
-           await autoLogin()
-        }
-    }
+    private init(){}
     static let shared:  AuthenticationProvider = AuthenticationService()
     
-    let authState = CurrentValueSubject<AuthStatus, Never>(.loading)
     
     func createUser(for username: String, with email: String, and password: String) async throws {
         do{
@@ -62,8 +52,9 @@ final class AuthenticationService: AuthenticationProvider{
            let uid = authResponse.user.uid
            let user = UserModel(uid: uid, email: email, username: username)
            try await saveUserToDatabase(user: user)
-            
-            
+           UserCache.save(user)
+           RootAuthentication.shared.authState.send(.loggedIn(user))
+        
         }catch{
             throw AuthError.failedToCreateUser(message: error.localizedDescription)
             
@@ -74,7 +65,8 @@ final class AuthenticationService: AuthenticationProvider{
     func loginUser(with email: String, and password: String) async throws {
         do{
             try await Auth.auth().signIn(withEmail: email, password: password)
-            fetchUserFromDatabase()
+            
+            await RootAuthentication.shared.fetchUserFromDatabase()
         }catch{
             throw AuthError.failedToLoginUser(message: error.localizedDescription)
         }
@@ -82,18 +74,15 @@ final class AuthenticationService: AuthenticationProvider{
     }
     
     func logout() async {
-        
+    
+        try? Auth.auth().signOut()
+        UserCache.clear()
+        RootAuthentication.shared.authState.send(.loggedOut)
+       
         
     }
     
-    func autoLogin() async {
-        if Auth.auth().currentUser==nil{
-            authState.send(.loggedOut)
-        }else{
-            fetchUserFromDatabase()
-        }
-        
-    }
+   
     
 
 }
@@ -115,24 +104,5 @@ extension AuthenticationService{
             throw AuthError.failedToSaveUser(message: error.localizedDescription)
         }
     }
-    
-    
-    func fetchUserFromDatabase(){
-        guard let uid = Auth.auth().currentUser?.uid else{ return }
-        
-        Database.database().reference().child("users").child(uid).observe(.value) {[weak self] snapshot in
-            
-            guard let  userDict = snapshot.value as? [String:Any] else{return}
-            let currentUser = UserModel(dictionary: userDict)
-            self?.authState.send(.loggedIn(currentUser))
-        
-        } withCancel: {error in
-            print("This error has occurred \(error.localizedDescription)")
-        }
-
-        
-    }
-    
-    
     
 }

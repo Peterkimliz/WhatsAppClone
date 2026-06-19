@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct SignInScreen: View {
-    @State private var authVm:AuthViewModel = AuthViewModel()
+    @Environment(AuthViewModel.self) private var authVm
+    
     var body: some View {
         @Bindable var authBindable = authVm
         
         NavigationStack{
             VStack(spacing: 15){
-                
-                  TextFormField(
+                TextFormField(
                     value: $authBindable.txtLoginEmail,
                     image: "envelope.fill",
                     placeholder: "Email",
@@ -75,10 +75,20 @@ struct SignInScreen: View {
                 Text(authBindable.autherror.message)
             }
         
-        }.environment(authVm)
+        }
     }
 }
 
 #Preview {
-    SignInScreen()
+    struct SignInScreenWrapper:View{
+        @State private var authVm:AuthViewModel=AuthViewModel()
+        
+        var body: some View{
+            SignInScreen()
+        }
+        
+    }
+    
+    return SignInScreenWrapper()
+   
 }

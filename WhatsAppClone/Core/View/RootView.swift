@@ -9,17 +9,21 @@ import SwiftUI
 
 struct RootView: View {
     @State private var rootVm:RootViewModel=RootViewModel()
+    @State private var authVm = AuthViewModel()
+    
     var body: some View {
         
-        switch rootVm.authState {
-        case .loading:
-            ProgressView()
-                .controlSize(.large)
-        case .loggedIn(let userModel):
-            MainTabView(user: userModel)
-        case .loggedOut:
-            SignInScreen()
-        }
+        VStack{
+            switch rootVm.authState {
+            case .loading:
+                ProgressView()
+                    .controlSize(.large)
+            case .loggedIn(let userModel):
+                MainTabView(user: userModel)
+            case .loggedOut:
+                SignInScreen()
+            }
+        }.environment(authVm)
         
       
     }

@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SettingsTabScreen: View {
     @State private var searchString:String  = ""
+    @State private var showLogoutDialog:Bool = false
+    @Environment(AuthViewModel.self) private var authVm
+    
     var body: some View {
        NavigationStack {
            List{
@@ -36,12 +39,42 @@ struct SettingsTabScreen: View {
                Section{
                    SettingItemView(settingItem: .help)
                    SettingItemView(settingItem: .tellAfriend)
+                  
+                   Button {
+                       showLogoutDialog = true
+                   } label: {
+                       SettingItemView(settingItem: .logout)
+                   }
+
                 
                  
                }
            }
            .navigationTitle("Settings")
            .searchable(text: $searchString)
+           .alert("Log Out",isPresented:$showLogoutDialog) {
+               Button(role:.confirm) {
+                   showLogoutDialog = false
+                  Task {
+                       await authVm.handleLogout()
+                   }
+                   
+               } label: {
+                   Text("Yes")
+               }
+               
+               Button(role:.confirm) {
+                   showLogoutDialog = false
+               } label: {
+                   Text("No")
+                   
+               }
+               
+           } message: {
+               Text("Are you sure you want to Sign out?")
+           }
+
+          
         }
     }
     
@@ -82,5 +115,17 @@ struct SettingsTabScreen: View {
 }
 
 #Preview {
-    SettingsTabScreen()
+    
+    struct  SettingsTabScreenWrapper:View{
+        @State private var authVm:AuthViewModel = AuthViewModel()
+        
+        var body:some View{
+            SettingsTabScreen()
+        }
+        
+        
+    }
+    
+    return SettingsTabScreenWrapper()
+ 
 }

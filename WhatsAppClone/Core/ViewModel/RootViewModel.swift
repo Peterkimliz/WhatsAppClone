@@ -14,7 +14,7 @@ final class RootViewModel{
     
      init(){
         
-      cancelable = AuthenticationService.shared.authState.receive(on: DispatchQueue.main)
+      cancelable = RootAuthentication.shared.authState.receive(on: DispatchQueue.main)
             .sink {[weak self]latestState in
                 self?.authState = latestState
         }
