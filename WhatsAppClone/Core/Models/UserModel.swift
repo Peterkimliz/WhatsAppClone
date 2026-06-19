@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserModel:Identifiable ,Decodable,Hashable{
+struct UserModel:Identifiable ,Codable,Hashable{
     
     let uid:String
     let email:String
