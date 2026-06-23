@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChatsTabScreen: View {
     @State private var searchText:String = ""
+    @State private var showModalSheet:Bool = false
     
     var body: some View {
         NavigationStack{
@@ -52,13 +53,18 @@ struct ChatsTabScreen: View {
                 
                 
             }.listStyle(.plain)
+             
             .navigationTitle("Chats")
                 .searchable(text:$searchText)
                 .toolbar {
                     toolBarMenu()
                     toolBarGroupedItems()
                 }
-        }
+        }   .sheet(isPresented: $showModalSheet, content: {
+            NavigationStack{
+                ChatOptionsScreen()
+            }
+        })
     }
 }
 
@@ -105,7 +111,7 @@ extension ChatsTabScreen{
                 Image(systemName: "camera")
             }
             Button {
-                
+                showModalSheet = true
             } label: {
                 Image(.plus)
             }

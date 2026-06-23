@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct ChatTextInputArea:View{
+struct ChatTextInputAreaView:View{
     
     @State private var chatMessage:String = ""
     
@@ -60,5 +60,5 @@ struct ChatTextInputArea:View{
 
 
 #Preview {
-    ChatTextInputArea()
+    ChatTextInputAreaView()
 }

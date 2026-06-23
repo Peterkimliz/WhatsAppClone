@@ -5,7 +5,7 @@
 //  Created by Apple on 07/06/2026.
 
 import SwiftUI
-struct ChatRoom: View {
+struct ChatRoomScreen: View {
     var body: some View {
         ZStack {
             Image(.chatbackground)
@@ -27,7 +27,8 @@ struct ChatRoom: View {
                     
                 }
                 
-            }
+            }.padding(.horizontal, 8)
+            .padding(.bottom, 8)
             
         }
         .toolbarVisibility(.hidden, for:.tabBar)
@@ -37,14 +38,14 @@ struct ChatRoom: View {
             
         }
         .safeAreaInset(edge: .bottom) {
-            ChatTextInputArea()
+            ChatTextInputAreaView()
         }
         
     }
 }
 
 
-extension ChatRoom{
+extension ChatRoomScreen{
     
     
     @ToolbarContentBuilder
@@ -93,7 +94,7 @@ extension ChatRoom{
 
 #Preview {
     NavigationStack{
-        ChatRoom()
+        ChatRoomScreen()
 
     }
   
