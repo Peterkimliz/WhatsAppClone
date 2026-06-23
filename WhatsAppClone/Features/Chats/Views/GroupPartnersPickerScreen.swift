@@ -10,18 +10,14 @@ import SwiftUI
 
 struct GroupPartnerPickerScreen: View {
     @State private var searchText:String = ""
-     var chatVm:ChatsViewModel
-    
-    
-    
-   
+    var chatVm:ChatsViewModel
     
     var body: some View {
         List{
             
             if(chatVm.showUsersSelecte()){
-                ScrollView(.horizontal) {
-                    HStack {}
+                SelectedChatPartner(users: chatVm.selectedGroupUsers) { user in
+                    chatVm.handleItemSelection(user: user)
                 }
             }
             
@@ -29,14 +25,20 @@ struct GroupPartnerPickerScreen: View {
             Section{
                 ForEach(UserModel.dummyUsers) { item in
                     Button{
-                        chatVm.addUser(user: item)
+                        chatVm.handleItemSelection(user: item)
                     }label:{
                         chatUserItemView(item: item)
                     }
                 }
             }
             
-        }.searchable(text:$searchText,placement: .navigationBarDrawer)
+        }
+        .animation(.easeInOut, value: chatVm.showUsersSelecte())
+        .searchable(text:$searchText,placement:.navigationBarDrawer(displayMode:.always))
+        .toolbar {
+            trailingButtonToolBar()
+            titleToolBar()
+        }
     }
     
     fileprivate func chatUserItemView(item: UserModel) -> some View{
@@ -51,9 +53,40 @@ struct GroupPartnerPickerScreen: View {
             
         }
     }
+}
+
+extension GroupPartnerPickerScreen{
     
-  
     
+    @ToolbarContentBuilder
+    private func trailingButtonToolBar()->some ToolbarContent{
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {
+                chatVm.navStack.append(.createChannel)
+            } label: {
+                Text("Next")
+                    .bold()
+            } .bold()
+            .disabled(!chatVm.showUsersSelecte())
+
+        }.sharedBackgroundVisibility(.hidden)
+        
+    }  
+    @ToolbarContentBuilder
+    private func titleToolBar()->some ToolbarContent{
+        ToolbarItem(placement: .principal) {
+          VStack{
+                Text("Add Paricipants")
+                    .bold()
+              let count = chatVm.selectedGroupUsers.count
+              Text("\(count)/20")
+                  .foregroundStyle(.secondary)
+                  .font(.footnote)
+            }
+
+        }.sharedBackgroundVisibility(.hidden)
+        
+    }
     
 }
 

@@ -12,7 +12,6 @@ struct RootView: View {
     @State private var authVm = AuthViewModel()
     
     var body: some View {
-        
         VStack{
             switch rootVm.authState {
             case .loading:

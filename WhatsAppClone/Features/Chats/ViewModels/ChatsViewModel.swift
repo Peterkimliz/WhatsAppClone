@@ -7,12 +7,40 @@
 
 import SwiftUI
 
-struct ChatsViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+enum  ChannelPatnerCreationRoute: Hashable {
+  case groupPatnerPicker
+  case createChannel
+    
 }
 
-#Preview {
-    ChatsViewModel()
+
+@Observable
+final class ChatsViewModel{
+    var navStack = [ChannelPatnerCreationRoute]()
+    
+    private(set)var selectedGroupUsers = [UserModel]()
+    
+    func showUsersSelecte()->Bool{
+        return !selectedGroupUsers.isEmpty
+    }
+    
+    func handleItemSelection(user:UserModel){
+        
+        if checkUserIsPresent(user: user){
+            guard let  index = selectedGroupUsers.firstIndex(where: { $0.id == user.id}) else{ return}
+            selectedGroupUsers.remove(at: index)
+        }else{
+            selectedGroupUsers.append(user)
+        }
+        
+    }
+    
+    
+    
+     func checkUserIsPresent(user:UserModel)->Bool{
+    
+        return selectedGroupUsers.contains { item in item.id == user.id}
+    }
+    
+    
 }

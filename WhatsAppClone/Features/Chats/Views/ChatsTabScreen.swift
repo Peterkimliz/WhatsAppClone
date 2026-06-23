@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatsTabScreen: View {
     @State private var searchText:String = ""
     @State private var showModalSheet:Bool = false
+    @State private var chatVm:ChatsViewModel = ChatsViewModel()
     
     var body: some View {
         NavigationStack{
@@ -18,25 +19,25 @@ struct ChatsTabScreen: View {
                 Button {
                     
                 } label: {
-                
+                    
                     Label( "Archived",systemImage: "archivebox.fill" )
                         .foregroundStyle(.gray)
                         .bold()
                         .padding()
-
+                    
                 }
                 
                 ForEach(0..<10){_ in
                     
                     NavigationLink {
-                        ChatRoom()
+                        ChatRoomScreen()
                     } label: {
-                        ChatItemView()
+                        ChatInboxView()
                     }
-
                     
                     
-                     
+                    
+                    
                 }
                 
                 
@@ -47,30 +48,30 @@ struct ChatsTabScreen: View {
                     
                     
                 }.padding(.horizontal)
-                .font(.caption)
-                .foregroundStyle(.gray)
-                .listRowSeparator(.hidden)
+                    .font(.caption)
+                    .foregroundStyle(.gray)
+                    .listRowSeparator(.hidden)
                 
                 
-            }.listStyle(.plain)
-             
+            }
+            .environment(chatVm)
+            .listStyle(.plain)
             .navigationTitle("Chats")
-                .searchable(text:$searchText)
-                .toolbar {
+            .searchable(text:$searchText)
+            .toolbar {
                     toolBarMenu()
                     toolBarGroupedItems()
                 }
-        }   .sheet(isPresented: $showModalSheet, content: {
-            NavigationStack{
-                ChatOptionsScreen()
-            }
+        }
+        .sheet(isPresented: $showModalSheet, content: {
+            ChatPartnerScreen(chatViewModel: chatVm)
+
         })
     }
 }
 
 
 extension ChatsTabScreen{
-    
     @ToolbarContentBuilder
      func toolBarMenu() ->some  ToolbarContent{
         

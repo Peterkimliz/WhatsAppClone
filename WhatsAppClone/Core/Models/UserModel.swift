@@ -23,6 +23,8 @@ struct UserModel:Identifiable ,Codable,Hashable{
         return bio ?? "Hi! Iam using Whatsappp"
     }
     
+
+    
 }
 
 
@@ -35,5 +37,21 @@ extension UserModel {
         self.bio = dictionary["bio"] as? String ?? ""
         self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
     }
+    
+    static var dummyUsers:[UserModel] = [
+         UserModel(uid: "errw6er1", email: "qa1@gmail.com", username: "Qauser1"),
+         UserModel(uid: "errw6er2", email: "qa1@gmail.com", username: "Qauser2"),
+         UserModel(uid: "errw6er3", email: "qa1@gmail.com", username: "Qauser3"),
+         UserModel(uid: "errw6er4", email: "qa1@gmail.com", username: "Qauser4"),
+         UserModel(uid: "errw6er5", email: "qa1@gmail.com", username: "Qauser5"),
+         UserModel(uid: "errw6er6", email: "qa1@gmail.com", username: "Qauser6"),
+         UserModel(uid: "errw6er7", email: "qa1@gmail.com", username: "Qauser7"),
+         UserModel(uid: "errw6er8", email: "qa1@gmail.com", username: "Qauser8"),
+         UserModel(uid: "errw6er9", email: "qa1@gmail.com", username: "Qauser9"),
+         UserModel(uid: "errw6er10", email: "qa1@gmail.com", username: "Qauser10"),
+         UserModel(uid: "errw6er11", email: "qa1@gmail.com", username: "Qauser11"),
+         UserModel(uid: "errw6er12", email: "qa1@gmail.com", username: "Qauser12")
+         
+     ]
     
 }

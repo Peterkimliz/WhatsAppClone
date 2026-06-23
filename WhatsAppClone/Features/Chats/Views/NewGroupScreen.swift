@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct NewGroupScreen: View {
+    @State private var searchText:String = ""
+    var chatVm:ChatsViewModel
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    NewGroupScreen()
+    NewGroupScreen(chatVm: ChatsViewModel())
 }
