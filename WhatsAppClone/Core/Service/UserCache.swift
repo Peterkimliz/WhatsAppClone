@@ -17,6 +17,7 @@ struct UserCache {
     
     static func load() -> UserModel? {
         guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
+        print("Found use \(data)")
         return try? JSONDecoder().decode(UserModel.self, from: data)
     }
     

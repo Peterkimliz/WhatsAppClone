@@ -25,10 +25,10 @@ struct ChatUserItemView<displayItem: View>:View{
                 .foregroundStyle(Color(.systemGray))
             
                 VStack(alignment: .leading){
-                Text(user.username)
+                    Text(user.username.capitalized)
                     .foregroundStyle(.whatsAppBlack)
                     .bold()
-                
+//                
                 Text(user.bioUnwraapped)
                     .font(.callout)
                     .foregroundStyle(Color(.systemGray))

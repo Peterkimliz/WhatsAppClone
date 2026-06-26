@@ -6,6 +6,7 @@
 
 import SwiftUI
 struct ChatRoomScreen: View {
+    let channel:ChannelItem
     var body: some View {
         ZStack {
             Image(.chatbackground)
@@ -52,15 +53,20 @@ extension ChatRoomScreen{
     private func toolbarUserDetails()-> some ToolbarContent{
         
         ToolbarItem(placement: .topBarLeading) {
-            HStack {
+            HStack(spacing: 8) {
                 Circle()
-                    .frame(width: 35,height: 35)
-                
-                Text("Qatester1")
+                    .fill(.gray.opacity(0.3))
+                    .frame(width: 35, height: 35)
+
+                Text(channel.title.capitalized)
                     .foregroundStyle(.black)
                     .bold()
-            }.frame(maxWidth: .infinity)
-        }.sharedBackgroundVisibility(.hidden)
+                    .lineLimit(1)
+            }
+            .id(channel.id) // forces SwiftUI to treat this as a fresh view, not reuse a stale one
+        }
+        .sharedBackgroundVisibility(.hidden)
+            .sharedBackgroundVisibility(.hidden)
         
         
     }
@@ -94,7 +100,7 @@ extension ChatRoomScreen{
 
 #Preview {
     NavigationStack{
-        ChatRoomScreen()
+        ChatRoomScreen(channel: .placeholder)
 
     }
   

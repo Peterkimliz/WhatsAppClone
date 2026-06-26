@@ -20,7 +20,7 @@ struct UserModel:Identifiable ,Codable,Hashable{
     }
     
     var bioUnwraapped:String{
-        return bio ?? "Hi! Iam using Whatsappp"
+        return bio == nil ? "Hi! Iam using Whatsappp" : bio!
     }
     
 
@@ -34,7 +34,7 @@ extension UserModel {
         self.uid = dictionary["uid"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
         self.username = dictionary["username"] as? String ?? ""
-        self.bio = dictionary["bio"] as? String ?? ""
+        self.bio = dictionary["bio"] as? String ?? self.bioUnwraapped
         self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
     }
     

@@ -11,6 +11,8 @@ struct NewGroupScreen: View {
     @State private var searchText:String = ""
     @State var chatVm:ChatsViewModel
     @State private var name:String = ""
+    var oncreate:(_ channel:ChannelItem)-> Void
+    
     var body: some View {
         List{
             
@@ -67,6 +69,14 @@ extension NewGroupScreen{
     private func createButton()->some ToolbarContent{
         ToolbarItem(placement: .topBarTrailing) {
             Button {
+                let channelCreation = chatVm.createChannel(name,isGroupChat: true)
+                
+                switch channelCreation {
+                case .success(let channel):
+                    oncreate(channel)
+                case .failure(let error):
+                    print("Failed To create channel\(error.localizedDescription)")
+                }
                 
             } label: {
                 Text("Create")
@@ -82,6 +92,8 @@ extension NewGroupScreen{
 
 #Preview {
     NavigationStack{
-        NewGroupScreen(chatVm: ChatsViewModel())
+        NewGroupScreen(chatVm: ChatsViewModel()){channel in
+            
+        }
     }
 }

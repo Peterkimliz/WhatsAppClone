@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+
+struct UserNode{
+    let currentCursor:String?
+    let users:[UserModel]
+   static  var emptyNode :UserNode = UserNode(currentCursor:nil, users: [])
+    
+}
